@@ -1,11 +1,12 @@
 import pandas as pd
 
 
-df = pd.read_csv("ibex35_historico.csv", sep=';', decimal= ',', encoding='utf-8')
+df = pd.read_csv("ibex35_historico.csv", sep=';', decimal= ',', encoding='utf-8', skiprows=2, index_col=0)
 print(df.columns)
 #Apdatamos el formato de las fechas
-df.index = pd.to_datetime(df.index, format= '%Y-%m-%d')
+df.index = pd.to_datetime(df.index, format= '%Y-%m-%d').date
 print(df.index)
+print(df.head())
 
 #Ajustar el date time para que sea el formato solo YYYY-MM-DD, pasar todos los datos numericos a int o float
 #Error cuadratico medio, coef de correlación y ver la predicción
