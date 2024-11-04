@@ -42,6 +42,11 @@ print(df.head())
 #exportamos el dataframe
 df.to_csv('ibex35_historico_limpio.csv', sep=';', decimal=',', encoding='utf-8')
 
+# Normalizamos los datos para mejorar la eficiencia del modelo
+df = (df - df.mean()) / df.std()
+print(df.head())
+print(df.tail())
+
 #Ajustar el date time para que sea el formato solo YYYY-MM-DD, pasar todos los datos numericos a int o float HECHO
 #Error cuadratico medio, coef de correlación y ver la predicción
 #Mirar el formato de los datos y si cuadra con los de la web yahoo finance IBEX 35 HECHO
