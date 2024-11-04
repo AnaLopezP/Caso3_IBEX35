@@ -8,7 +8,7 @@ df = pd.read_csv("ibex35_historico_limpio.csv", sep=';', decimal=',', encoding='
 
 # Aplicar la descomposición a cada columna
 
-decomposition = seasonal_decompose(df['Cierre'], model='additive', period=90)
+decomposition = seasonal_decompose(df['Cierre'], model='additive', period=365)
 
 # Graficar los componentes (Observado, Tendencia)
 fig, axes = plt.subplots(2, 1, sharex=True, figsize=(10, 5))
@@ -33,3 +33,19 @@ plt.show()
 #Guardamos las gráficas
 fig.savefig('imgs/ibex35_hist_tend_observ.png')
 fig1.savefig('imgs/ibex35_hist_estacional_residuo.png')
+
+#Ver lógica de la curva de tendencia y estacionalidad
+'''
+Bajada en 2012 --> Mirar
+Maximo finales 2014 principios 2015
+
+Calcular ciclos (estacionario) --> analizar picos
+Ver residuos
+indicar tendencia
+¿Es estacionario? --> Ver si vale para el modelo o no
+Dividir por fechas, ej: 2023-2024 y ver así más en concreto
+
+'''
+
+#Ver maximos y minimos
+
