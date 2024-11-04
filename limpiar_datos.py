@@ -32,7 +32,12 @@ print(df[df['Abrir'] == 0])
 print(df[df['Volumen'] == 0])
 print("En el caso del volumen hay un 0 pero hemos comprobado que no es un error")
 
+#Comprobamos el tipo de los valores
 print(df.dtypes)
+
+#Redondeamos los valores a dos decimales
+df = df.round(2)
+print(df.head())
 
 
 
