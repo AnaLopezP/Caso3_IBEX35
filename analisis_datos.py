@@ -31,5 +31,5 @@ plt.tight_layout(rect=[0, 0, 1, 0.96])
 plt.show()
 
 #Guardamos las gráficas
-fig.savefig('ibex35_hist_tend_observ.png')
-fig1.savefig('ibex35_hist_estacional_residuo.png')
+fig.savefig('imgs/ibex35_hist_tend_observ.png')
+fig1.savefig('imgs/ibex35_hist_estacional_residuo.png')
