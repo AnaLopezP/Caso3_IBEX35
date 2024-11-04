@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-df = pd.read_csv("ibex35_historico.csv", sep=';', encoding='utf-8', skiprows=2, index_col=0)
+df = pd.read_csv("ibex35_historico.csv", sep=';', decimal=',', encoding='utf-8', skiprows=2, index_col=0)
 print(df.columns)
 
 df.index = pd.to_datetime(df.index).date
@@ -31,6 +31,9 @@ print(df[df['Minimo'] == 0])
 print(df[df['Abrir'] == 0])
 print(df[df['Volumen'] == 0])
 print("En el caso del volumen hay un 0 pero hemos comprobado que no es un error")
+
+print(df.dtypes)
+
 
 
 
