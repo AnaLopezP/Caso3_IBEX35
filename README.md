@@ -37,6 +37,22 @@ Series temporales estacionarias. Sin tendencia, o estacionalidad marcada.
 - d: orden diferenciacion (d = 1 o 2). Se mira con prueba de Dickey-Fuller Aumentada (ADF), si p > 0.05 --> diferenciando la serie una vez y vuelve a realizar la prueba de estacionaridad. Si después de una diferenciación la serie se vuelve estacionaria, entonces d = 1. Si no otra vez. (d = 2)
 - q: orden media movil (MA). usar grafico autocorrelacion para elegirlo. Ver ACF, el punto de corte (q)
 
+AFC (q): 
+Valores Positivos: Indican que hay una correlación positiva entre la serie y su valor retrasado. Por ejemplo, un valor de 0.014 en el lag 1 sugiere que hay una ligera tendencia positiva en la serie a corto plazo.
+
+Valores Negativos: Indican una correlación negativa. Por ejemplo, en el lag 4, el valor -0.020 sugiere que cuando el valor en t−4 es alto, el valor actual t tiende a ser bajo, y viceversa.
+
+Valores Cercanos a Cero: Indican que no hay correlación significativa entre la serie y sus retardos en esos lags. Por ejemplo, los valores como 0.001 y -0.031 son muy cercanos a cero, lo que sugiere que no hay una relación significativa entre esos valores.
+Lag 1 a 5: Los valores son relativamente pequeños (entre 0.014 y -0.028). Esto sugiere que la autocorrelación es débil en estos lags.
+Lag 6 a 10: Vemos un ligero aumento y disminución, pero aún no hay picos significativos.
+Lag 11 y más: Los valores siguen siendo pequeños y algunos negativos. La mayoría está cerca de cero.
+
+Recomendación (q):
+Dado que los valores de ACF no muestran una caída abrupta en los primeros lags, podría ser que el modelo no necesite muchos términos de media móvil, o que incluso necesites explorar modelos más complejos si es que hay un comportamiento más subyacente que no se capta con un q bajo. 
+Comienza con un q=1 y prueba el modelo.
+Evalúa el rendimiento y observa si hay patrones significativos en los residuos.
+Prueba valores mayores si notas que el modelo no captura bien la serie.
+
 ## SARIMA
 Tiene los mismos parámetros que el ARIMA, además de 
 P,D,Q,s: para el componente estacional.
