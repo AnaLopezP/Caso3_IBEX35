@@ -38,5 +38,13 @@ Series temporales estacionarias. Sin tendencia, o estacionalidad marcada.
 
 - q: orden media movil (MA). usar grafico autocorrelacion para elegirlo. Ver ACF, el punto de corte (q)
 
+## SARIMA
+Tiene los mismos parámetros que el ARIMA, además de 
+P,D,Q,s: para el componente estacional.
+P: orden estacional autorregresivo (SAR).
+D: número de diferencias estacionales.
+Q: orden estacional de media móvil (SMA).
+s: periodo estacional (por ejemplo, 12 para datos mensuales o 365 para datos diarios si hay estacionalidad anual).
+
 
 
