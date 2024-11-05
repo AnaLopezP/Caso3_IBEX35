@@ -28,3 +28,11 @@ Si el p-valor es menor que 0.05, se rechaza la hipótesis nula (que tiene raíz 
 Es para ver si hay tendencia. Un valor de p bajo (p < 0.05) sugiere una tendencia significativa.
 La dirección de la tendencia se determina mediante el signo de la estadística de prueba.
 
+# MODELOS
+## ARIMA
+Series temporales estacionarias. Sin tendencia, o estacionalidad marcada. 
+### Preparación:
+- Estacionaria pero no mucho
+- p: orden autorregresion (AR). grafo autocorrelación parcial (PACF)
+- d: orden diferenciacion (d = 1 o 2)
+- q: orden media movil (MA). usar grafico autocorrelacion para elegirlo
