@@ -4,11 +4,13 @@
 Tendencia ascendende pero muy hardcore
 Tenemos dos boquetes (ver fecha exacta y el por qué) y un medio boquete que parece una bajada normal
 Las fechas exactas de los dos boqueten son:
+(Hay que tener en cuenta que hemos cogido los valores más bajos, pero la bajada puede abarcar más periodo de tiempo)
 ### Boquete 1
 Del 18/09/2012 - 06/02/2013 
+El bajo valor en el IBEX 35 alrededor de 2012-2013 se debe principalmente a la crisis financiera en Europa, que fue particularmente dura para España. Durante ese periodo, varios países europeos, incluyendo España, enfrentaron serios problemas económicos debido a la crisis de deuda soberana en la eurozona, que comenzó en 2009 y alcanzó uno de sus puntos más críticos alrededor de 2012.
 ### Boquete 2 (pandemia)
-Del 08/06/2020 - 13/01/2021, sabemos que la razón es la pandemia.
-
+Del 08/06/2020 - 13/01/2021
+sabemos que la razón es la pandemia, que empezó en marzo de 2020.
 ## ESTACIONALIDAD
 Tenemos que ver cada cuanto se repite (osea aislar el ciclo)
 Como están muy marcados, pordemos decir que es una estacionalidad fuerte (depende de estaciones) pero lo veremos cuando aislemos el ciclo.
