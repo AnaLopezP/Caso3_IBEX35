@@ -54,7 +54,9 @@ Dividir por fechas, ej: 2023-2024 y ver así más en concreto
 # Prueba de Dickey-Fuller Aumentada (ADF) 
 from statsmodels.tsa.stattools import adfuller
 def adf (df):
-    resultado = adfuller(df['Cierre'])
+    #Adaptamos la función para que acepte un DataFrame o una Serie
+    series = df['Cierre'] if isinstance(df, pd.DataFrame) else df
+    resultado = adfuller(series)
     p_valor = resultado[1]
 
     print(f'P-valor: {p_valor}')
