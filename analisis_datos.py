@@ -63,15 +63,18 @@ for i in a:
 
 # Prueba de Dickey-Fuller Aumentada (ADF) 
 from statsmodels.tsa.stattools import adfuller
-resultado = adfuller(df['Cierre'])
-p_valor = resultado[1]
+def adf (df):
+    resultado = adfuller(df['Cierre'])
+    p_valor = resultado[1]
 
-print(f'P-valor: {p_valor}')
-# Interpretación del p-valor
-if p_valor < 0.05:
-    print('La serie es estacionaria')
-else:
-    print('La serie no es estacionaria')
+    print(f'P-valor: {p_valor}')
+    # Interpretación del p-valor
+    if p_valor < 0.05:
+        print('La serie es estacionaria')
+        return True
+    else:
+        print('La serie no es estacionaria')
+        return False
 
 
 # Prueba de Mann-Kendall 

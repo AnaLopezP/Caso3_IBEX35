@@ -33,6 +33,10 @@ La dirección de la tendencia se determina mediante el signo de la estadística 
 Series temporales estacionarias. Sin tendencia, o estacionalidad marcada. 
 ### Preparación:
 - Estacionaria pero no mucho
-- p: orden autorregresion (AR). grafo autocorrelación parcial (PACF)
-- d: orden diferenciacion (d = 1 o 2)
-- q: orden media movil (MA). usar grafico autocorrelacion para elegirlo
+- p: orden autorregresion (AR). grafo autocorrelación parcial (PACF). Ver PACF, ver en que punto se corta (p), cuándo los valores caen a cero o cerca de cero
+- d: orden diferenciacion (d = 1 o 2). Se mira con prueba de Dickey-Fuller Aumentada (ADF), si p > 0.05 --> diferenciando la serie una vez y vuelve a realizar la prueba de estacionaridad. Si después de una diferenciación la serie se vuelve estacionaria, entonces d = 1. Si no otra vez. (d = 2)
+
+- q: orden media movil (MA). usar grafico autocorrelacion para elegirlo. Ver ACF, el punto de corte (q)
+
+
+
