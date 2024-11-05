@@ -49,3 +49,13 @@ Dividir por fechas, ej: 2023-2024 y ver así más en concreto
 
 #Ver maximos y minimos
 
+# Sacamos las filas que tienen un cierre alrededor de 8000
+tendencia = decomposition.trend
+print(tendencia[tendencia < 8000])
+
+
+# saco las fechas de todas las filas entre estos valores
+a = tendencia[tendencia < 8000].index
+for i in a:
+    print(i)
+# print(df[ 7500 > df['Cierre'] > 8500])
