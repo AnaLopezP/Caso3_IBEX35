@@ -59,3 +59,33 @@ a = tendencia[tendencia < 8000].index
 for i in a:
     print(i)
 # print(df[ 7500 > df['Cierre'] > 8500])
+
+
+# Prueba de Dickey-Fuller Aumentada (ADF) 
+from statsmodels.tsa.stattools import adfuller
+resultado = adfuller(df['Cierre'])
+p_valor = resultado[1]
+
+print(f'P-valor: {p_valor}')
+# Interpretación del p-valor
+if p_valor < 0.05:
+    print('La serie es estacionaria')
+else:
+    print('La serie no es estacionaria')
+
+
+# Prueba de Mann-Kendall 
+
+import pymannkendall as mk
+
+result = mk.original_test(df['Cierre'])
+print(result)
+
+if result.p < 0.05:
+    # La dirección de la tendencia se determina mediante el signo de la estadística
+    if result.trend == 'increasing':
+        print("Existe una tendencia creciente significativa.")
+    else:
+        print("Existe una tendencia decreciente significativa.")
+else:
+    print("No se detecta una tendencia significativa.")
