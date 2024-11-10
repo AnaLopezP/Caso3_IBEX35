@@ -70,7 +70,7 @@ for p in range(1, 4):  # Cambia los límites si deseas probar más valores
             fitted_model = model.fit()
             if fitted_model.aic < best_aic:
                 best_aic = fitted_model.aic
-                best_order = (p, d, q)
+                best_order = (p, d, q) #(3,1,2) mejores valores
                 best_model = fitted_model
         except Exception as e:
             continue
