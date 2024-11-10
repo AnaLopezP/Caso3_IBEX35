@@ -96,9 +96,11 @@ plt.plot(test, label="Prueba", color="orange")
 plt.plot(test.index, predictions, label="Predicciones", color="green")
 plt.legend()
 plt.show()
+plt.savefig('imgs/prediccion_vs_real_arima.png')
 
 #Miramos residuos
 residuals = best_model.resid
 plot_acf(residuals, lags=40)
 plt.title("ACF de los residuos")
 plt.show()
+plt.savefig('imgs/acf_residuos_arima.png')
