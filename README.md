@@ -80,4 +80,9 @@ Conclusión: descartamos completamente esta opción debido a problemas al conver
 ## LSTM
 LSTM (Long Short-Term Memory), útil para capturar dependencias a largo plazo en series temporales complejas. Están diseñadas para secuencias que retienen información durante varios pasos temporales. 
 
+Explicación del código:
+Escalado de datos: Utilizamos MinMaxScaler para ajustar los valores entre 0 y 1, lo que ayuda a mejorar el rendimiento de los modelos LSTM.
+Secuencias de entrada: El modelo LSTM se entrena con secuencias de seq_length días previos para predecir el siguiente día.
+Estructura del modelo LSTM: Se usan dos capas LSTM con una capa Dense final para realizar la predicción.
+Visualización: Compara los valores reales con las predicciones del LSTM para evaluar el rendimiento visualmente.
 
