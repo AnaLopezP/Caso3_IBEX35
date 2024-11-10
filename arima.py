@@ -38,8 +38,8 @@ print(f"Valor seleccionado para d: {d}")
 series_diff1 = series_diff1.squeeze() if d > 0 else df['Cierre']
 
 # Calcular valores ACF y PACF
-acf_values = acf(series_diff1, nlags=80)  
-pacf_values = pacf(series_diff1, nlags=80)
+acf_values = acf(series_diff1, nlags=40)  
+pacf_values = pacf(series_diff1, nlags=40)
 
 # Imprimir los valores
 print("Valores de ACF:")
@@ -49,8 +49,8 @@ print(pacf_values)
 
 # Gráficos de ACF y PACF en la serie diferenciada (si d > 0)
 fig, axes = plt.subplots(1, 2, figsize=(12, 6))
-plot_acf(series_diff1, lags=80, ax=axes[0])
-plot_pacf(series_diff1, lags=80, ax=axes[1])
+plot_acf(series_diff1, lags=40, ax=axes[0])
+plot_pacf(series_diff1, lags=40, ax=axes[1])
 plt.show()
 
 #d = 1, q = {1,2,3}, p = {1,2,3} (recomienda mejor 2 y 3)
@@ -95,4 +95,10 @@ plt.plot(train, label="Entrenamiento")
 plt.plot(test, label="Prueba", color="orange")
 plt.plot(test.index, predictions, label="Predicciones", color="green")
 plt.legend()
+plt.show()
+
+#Miramos residuos
+residuals = best_model.resid
+plot_acf(residuals, lags=40)
+plt.title("ACF de los residuos")
 plt.show()

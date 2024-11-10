@@ -53,6 +53,19 @@ Comienza con un q=1 y prueba el modelo.
 Evalúa el rendimiento y observa si hay patrones significativos en los residuos.
 Prueba valores mayores si notas que el modelo no captura bien la serie.
 
+AIC
+El AIC (Criterio de Información de Akaike, por sus siglas en inglés: Akaike Information Criterion) es una métrica que se usa para evaluar la calidad de modelos estadísticos, especialmente útil para comparar modelos con diferentes números de parámetros, como los modelos ARIMA.
+
+Menor AIC indica un mejor ajuste relativo. Cuanto más bajo sea el valor de AIC, mejor equilibrio tiene el modelo entre ajuste y complejidad.
+
+Evaluar residuos
+Para asegurarte de que el modelo captura bien la serie, verifica que los residuos del modelo no tengan patrones claros y sean aproximadamente ruido blanco.
+
+Conclusiones
+Todos los rezagos de la ACF de los residuos, excepto el 0, están dentro de la banda de confianza, y
+No se observan patrones significativos en los residuos,
+esto sugiere que el modelo (3,1,2) es adecuado y ha logrado capturar bien la dinámica de la serie.
+
 ## SARIMA
 Tiene los mismos parámetros que el ARIMA, además de 
 P,D,Q,s: para el componente estacional.
