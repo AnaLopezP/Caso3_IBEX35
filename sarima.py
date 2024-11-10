@@ -38,12 +38,12 @@ plt.show()
 print("ACF Y PACF GRAFICADOS CORRECTAMENTE")
 
 # Parámetros de SARIMA
-p, q, d = 3, 2, 1  # Ajusta según observaciones en ACF y PACF
+p, q, d = 1, 1, 1  # Ajusta según observaciones en ACF y PACF
 P, Q, D, s = 1, 1, 1, 365  # Estacionalidad anual
 print("PARÁMETROS DE SARIMA ESTABLECIDOS CORRECTAMENTE")
 
 # Modelo SARIMA
-model = SARIMAX(train, order=(p, d, q), seasonal_order=(P, D, Q, s))
+model = SARIMAX(train, order=(p, d, q), seasonal_order=(P, D, Q, s), enforce_stationarity=False, enforce_invertibility=False)
 sarima_fit = model.fit(disp=False)
 print(sarima_fit.summary())
 print("MODELO SARIMA AJUSTADO CORRECTAMENTE")

@@ -74,5 +74,8 @@ D: número de diferencias estacionales.
 Q: orden estacional de media móvil (SMA).
 s: periodo estacional (por ejemplo, 12 para datos mensuales o 365 para datos diarios si hay estacionalidad anual).
 
+Conclusión: descartamos completamente esta opción debido a problemas al converger. 
+
+
 
 
