@@ -77,5 +77,7 @@ s: periodo estacional (por ejemplo, 12 para datos mensuales o 365 para datos dia
 Conclusión: descartamos completamente esta opción debido a problemas al converger. 
 
 
+## LSTM
+LSTM (Long Short-Term Memory), útil para capturar dependencias a largo plazo en series temporales complejas. Están diseñadas para secuencias que retienen información durante varios pasos temporales. 
 
 
