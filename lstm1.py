@@ -70,6 +70,21 @@ plt.show()
 predictions = model.predict(x_val)
 predictions = scaler.inverse_transform(predictions)
 
+# Calcular el intervalo de confianza
+errors = predictions - scaler.inverse_transform(y_val.reshape(-1, 1))
+std_dev = np.std(errors)
+
+# Intervalo de confianza del 68%
+confidence_68 = std_dev * 1
+upper_bound_68 = predictions + confidence_68
+lower_bound_68 = predictions - confidence_68
+
+# Intervalo de confianza del 73%
+confidence_73 = std_dev * 1.06
+upper_bound_73 = predictions + confidence_73
+lower_bound_73 = predictions - confidence_73
+
+
 # Calcular el error cuadrático medio, error absoluto medio y error absoluto porcentual
 rmse = np.sqrt(np.mean(((predictions - y_val) ** 2)))
 print('Error cuadrático medio:', rmse)
@@ -82,6 +97,11 @@ print('Error absoluto porcentual medio:', mape)
 #train = df[:train_data_len]
 valid = df[train_data_len:]
 valid['Predictions'] = predictions
+valid['Upper Bound 68'] = upper_bound_68
+valid['Lower Bound 68'] = lower_bound_68
+valid['Upper Bound 73'] = upper_bound_73
+valid['Lower Bound 73'] = lower_bound_73
+
 plt.figure(figsize=(16,8))
 plt.title('Modelo LSTM')
 plt.xlabel('Fecha')

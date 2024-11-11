@@ -86,3 +86,6 @@ Secuencias de entrada: El modelo LSTM se entrena con secuencias de seq_length d�
 Estructura del modelo LSTM: Se usan dos capas LSTM con una capa Dense final para realizar la predicción.
 Visualización: Compara los valores reales con las predicciones del LSTM para evaluar el rendimiento visualmente.
 
+Nos falta dar el intervalo de confianza de la predicción del 68% al 73%
+
+
