@@ -19,6 +19,7 @@ train_data = scaled_data[0:train_data_len,:]
 val_data = scaled_data[train_data_len-60:,:]
 
 
+
 #dividir los datos en conjuntos de entrenamiento y prueba
 x_train = []
 y_train = []
@@ -70,6 +71,10 @@ plt.show()
 predictions = model.predict(x_val)
 predictions = scaler.inverse_transform(predictions)
 
+# Desescala los valores de y_val para los cálculos de métricas y errores
+y_val_unscaled = scaler.inverse_transform(y_val.reshape(-1, 1))
+
+
 # Calcular el intervalo de confianza
 errors = predictions - scaler.inverse_transform(y_val.reshape(-1, 1))
 std_dev = np.std(errors)
@@ -86,30 +91,28 @@ upper_bound_70 = predictions + confidence_70
 lower_bound_70 = predictions - confidence_70
 print('Intervalo de confianza del 73%:', confidence_70)
 
-
-# Calcular el error cuadrático medio, error absoluto medio y error absoluto porcentual
-rmse = np.sqrt(np.mean(((predictions - y_val) ** 2)))
+# Calcular métricas con valores desescalados
+rmse = np.sqrt(np.mean((predictions - y_val_unscaled) ** 2))
 print('Error cuadrático medio:', rmse)
-mae = np.mean(np.abs(predictions - y_val))
+
+mae = np.mean(np.abs(predictions - y_val_unscaled))
 print('Error absoluto medio:', mae)
-mape = np.mean(np.abs(predictions - y_val)/np.abs(y_val))
+
+mape = np.mean(np.abs(predictions - y_val_unscaled) / np.abs(y_val_unscaled)) * 100
 print('Error absoluto porcentual medio:', mape)
 
-# Graficar los datos
-#train = df[:train_data_len]
-valid = df[train_data_len:]
-valid['Predictions'] = predictions
-'''valid['Upper Bound 68'] = upper_bound_68
-valid['Lower Bound 68'] = lower_bound_68'''
-valid['Upper Bound 73'] = upper_bound_70
-valid['Lower Bound 73'] = lower_bound_70
+# Crear el DataFrame de validación con los valores reales y predicciones
+val_index = df.index[train_data_len:]  # Índices correspondientes a los datos de validación
+valid = pd.DataFrame(data={'Cierre': y_val_unscaled.flatten()}, index=val_index)
+valid['Predictions'] = predictions.flatten()
+valid['Upper Bound 73'] = upper_bound_70.flatten()
+valid['Lower Bound 73'] = lower_bound_70.flatten()
 
-
+# Graficar resultados con el nuevo intervalo de confianza
 plt.figure(figsize=(16, 8))
 plt.plot(valid['Cierre'], label='Real')
 plt.plot(valid['Predictions'], label='Predicciones')
-#plt.fill_between(valid.index, valid['Lower Bound 68'], valid['Upper Bound 68'], color='orange', alpha=0.3, label='Intervalo de Confianza 68%')
-plt.fill_between(valid.index, valid['Lower Bound 70'], valid['Upper Bound 70'], color='red', alpha=0.2, label='Intervalo de Confianza 70%')
+plt.fill_between(valid.index, lower_bound_70.flatten(), upper_bound_70.flatten(), color='red', alpha=0.2, label='Intervalo de Confianza 70%')
 plt.title('Modelo LSTM con Intervalo de Confianza')
 plt.xlabel('Fecha')
 plt.ylabel('Cierre')
