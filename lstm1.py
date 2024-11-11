@@ -74,15 +74,17 @@ predictions = scaler.inverse_transform(predictions)
 errors = predictions - scaler.inverse_transform(y_val.reshape(-1, 1))
 std_dev = np.std(errors)
 
-# Intervalo de confianza del 68%
+'''# Intervalo de confianza del 68%
 confidence_68 = std_dev * 1
 upper_bound_68 = predictions + confidence_68
 lower_bound_68 = predictions - confidence_68
-
-# Intervalo de confianza del 73%
-confidence_73 = std_dev * 1.06
-upper_bound_73 = predictions + confidence_73
-lower_bound_73 = predictions - confidence_73
+print('Intervalo de confianza del 68%:', confidence_68)
+'''
+# Intervalo de confianza del 70%
+confidence_70 = std_dev * 1.5
+upper_bound_70 = predictions + confidence_70
+lower_bound_70 = predictions - confidence_70
+print('Intervalo de confianza del 73%:', confidence_70)
 
 
 # Calcular el error cuadrático medio, error absoluto medio y error absoluto porcentual
@@ -97,21 +99,22 @@ print('Error absoluto porcentual medio:', mape)
 #train = df[:train_data_len]
 valid = df[train_data_len:]
 valid['Predictions'] = predictions
-valid['Upper Bound 68'] = upper_bound_68
-valid['Lower Bound 68'] = lower_bound_68
-valid['Upper Bound 73'] = upper_bound_73
-valid['Lower Bound 73'] = lower_bound_73
+'''valid['Upper Bound 68'] = upper_bound_68
+valid['Lower Bound 68'] = lower_bound_68'''
+valid['Upper Bound 73'] = upper_bound_70
+valid['Lower Bound 73'] = lower_bound_70
 
-plt.figure(figsize=(16,8))
-plt.title('Modelo LSTM')
+
+plt.figure(figsize=(16, 8))
+plt.plot(valid['Cierre'], label='Real')
+plt.plot(valid['Predictions'], label='Predicciones')
+#plt.fill_between(valid.index, valid['Lower Bound 68'], valid['Upper Bound 68'], color='orange', alpha=0.3, label='Intervalo de Confianza 68%')
+plt.fill_between(valid.index, valid['Lower Bound 70'], valid['Upper Bound 70'], color='red', alpha=0.2, label='Intervalo de Confianza 70%')
+plt.title('Modelo LSTM con Intervalo de Confianza')
 plt.xlabel('Fecha')
 plt.ylabel('Cierre')
-#plt.plot(train['Cierre'])
-plt.plot(valid[['Cierre', 'Predictions']])
-plt.legend(['Entrenamiento', 'Real', 'Predicciones'], loc='lower right')
-plt.savefig('imgs/prediccion_vs_real_lstm.png')
+plt.legend()
 plt.show()
-
 
 
 
