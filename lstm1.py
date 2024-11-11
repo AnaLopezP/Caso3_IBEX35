@@ -62,8 +62,9 @@ plt.plot(history.history['loss'], label='train')
 plt.plot(history.history['val_loss'], label='test')
 plt.title('Pérdida del modelo')
 plt.legend()
-plt.show()
 plt.savefig('imgs/perdida_modelo_lstm.png')
+plt.show()
+
 
 # Predecir los precios
 predictions = model.predict(x_val)
@@ -88,8 +89,9 @@ plt.ylabel('Cierre')
 #plt.plot(train['Cierre'])
 plt.plot(valid[['Cierre', 'Predictions']])
 plt.legend(['Entrenamiento', 'Real', 'Predicciones'], loc='lower right')
-plt.show()
 plt.savefig('imgs/prediccion_vs_real_lstm.png')
+plt.show()
+
 
 
 

@@ -51,6 +51,7 @@ print(pacf_values)
 fig, axes = plt.subplots(1, 2, figsize=(12, 6))
 plot_acf(series_diff1, lags=40, ax=axes[0])
 plot_pacf(series_diff1, lags=40, ax=axes[1])
+fig.savefig('imgs/acf_pacf_arima.png')
 plt.show()
 
 #d = 1, q = {1,2,3}, p = {1,2,3} (recomienda mejor 2 y 3)
@@ -95,12 +96,13 @@ plt.plot(train, label="Entrenamiento")
 plt.plot(test, label="Prueba", color="orange")
 plt.plot(test.index, predictions, label="Predicciones", color="green")
 plt.legend()
-plt.show()
 plt.savefig('imgs/prediccion_vs_real_arima.png')
+plt.show()
+
 
 #Miramos residuos
 residuals = best_model.resid
 plot_acf(residuals, lags=40)
 plt.title("ACF de los residuos")
-plt.show()
 plt.savefig('imgs/acf_residuos_arima.png')
+plt.show()
