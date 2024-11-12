@@ -7,17 +7,17 @@ import matplotlib.pyplot as plt
 
 
 # Cargar y escalar los datos
-df = pd.read_csv("ibex35_historico_limpio.csv", sep=';', decimal=',', encoding='utf-8', index_col=0)
+df = pd.read_csv("ibex35_historico_limpio_sin_pandemia.csv", sep=';', decimal=',', encoding='utf-8', index_col=0)
 data = df['Cierre'].values.reshape(-1, 1)
 
 scaler = MinMaxScaler(feature_range=(0, 1))
 scaled_data = scaler.fit_transform(data)
 
+
 # Dividir en entrenamiento y prueba (80% para entrenamiento)
 train_data_len = int(np.ceil(len(scaled_data) * .8))
-train_data = scaled_data[0:train_data_len,:]
-val_data = scaled_data[train_data_len-60:,:]
-
+train_data = data[0:train_data_len,:]
+val_data = data[train_data_len-60:]
 
 
 #dividir los datos en conjuntos de entrenamiento y prueba
@@ -25,6 +25,14 @@ x_train = []
 y_train = []
 x_val = []
 y_val = []
+
+'''for i in range(60,len(train_data_scaled)):
+    x_train.append(train_data_scaled[i-60:i,0])
+    y_train.append(train_data_scaled[i,0])
+
+for i in range(60,len(val_data_scaled)):
+    x_val.append(val_data_scaled[i-60:i,0])
+    y_val.append(val_data_scaled[i,0])'''
 
 for i in range(60,len(train_data)):
     x_train.append(train_data[i-60:i,0])
@@ -63,7 +71,7 @@ plt.plot(history.history['loss'], label='train')
 plt.plot(history.history['val_loss'], label='test')
 plt.title('Pérdida del modelo')
 plt.legend()
-plt.savefig('imgs/perdida_modelo_lstm.png')
+plt.savefig('imgs/perdida_modelo_lstm_sin_pandemia.png')
 plt.show()
 
 
@@ -98,7 +106,7 @@ print('Error cuadrático medio:', rmse)
 mae = np.mean(np.abs(predictions - y_val_unscaled))
 print('Error absoluto medio:', mae)
 
-mape = np.mean(np.abs(predictions - y_val_unscaled) / np.abs(y_val_unscaled)) * 100
+mape = np.mean(np.abs(predictions - y_val_unscaled) / np.abs(y_val_unscaled)) 
 print('Error absoluto porcentual medio:', mape)
 
 # Crear el DataFrame de validación con los valores reales y predicciones
@@ -117,6 +125,7 @@ plt.title('Modelo LSTM con Intervalo de Confianza')
 plt.xlabel('Fecha')
 plt.ylabel('Cierre')
 plt.legend()
+plt.savefig('imgs/prediccion_modelo_lstm_sin_pandemia.png')
 plt.show()
 
 

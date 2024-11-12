@@ -16,6 +16,7 @@ df.rename(columns={'Unnamed: 1': 'Cierre',
                    'Unnamed: 5': 'Abrir',
                    'Unnamed: 6': 'Volumen'}, inplace=True)
 
+df.index.name = 'Fecha'
 print(df.index)
 print(df.head())
 
@@ -48,6 +49,29 @@ print(df.head())
 print(df.tail())
 
 #Ajustar el date time para que sea el formato solo YYYY-MM-DD, pasar todos los datos numericos a int o float HECHO
-#Error cuadratico medio, coef de correlación y ver la predicción
+#Error cuadratico medio, coef de correlación y ver la predicción HECHO
 #Mirar el formato de los datos y si cuadra con los de la web yahoo finance IBEX 35 HECHO
 #Establecer bien las columnas para que tengan sentido, cambiarles el nombre y hacerlo mejor. HECHO
+
+#----------------PANDEMIA ---------------------
+
+# Define el rango de fechas a excluir
+inicio_pandemia = pd.to_datetime("2020-03-01")
+fin_pandemia = pd.to_datetime("2021-03-31")
+
+# estraer el índice
+df = df.reset_index()
+df['Fecha'] = pd.to_datetime(df['Fecha'])
+
+print(df.columns)
+
+# Filtra el DataFrame excluyendo las fechas dentro del rango de la pandemia
+df_filtrado = df[(df['Fecha'] < inicio_pandemia) | (df['Fecha'] > fin_pandemia)]
+
+df_filtrado.set_index('Fecha', inplace=True)
+
+print(df_filtrado.loc['2020-02-27':'2021-04-02'])
+
+#Exportamos el nuevo dataframe
+df_filtrado.to_csv('ibex35_historico_limpio_sin_pandemia.csv', sep=';', decimal=',', encoding='utf-8')
+
