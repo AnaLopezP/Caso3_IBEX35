@@ -18,6 +18,13 @@ train_data_len = int(np.ceil(len(scaled_data) * .8))
 train_data = scaled_data[0:train_data_len,:]
 val_data = scaled_data[train_data_len-60:,:]
 
+''''
+Error cuadrático medio: 121.7012923207298
+Error absoluto medio: 97.40514243521342
+Error absoluto porcentual medio: 1.0379286622469546
+
+
+'''
 
 
 #dividir los datos en conjuntos de entrenamiento y prueba

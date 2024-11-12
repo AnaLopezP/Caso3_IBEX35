@@ -17,7 +17,8 @@ scaled_data = scaler.fit_transform(data)
 # Dividir en entrenamiento y prueba (80% para entrenamiento)
 train_data_len = int(np.ceil(len(scaled_data) * .8))
 train_data = data[0:train_data_len,:]
-val_data = data[train_data_len-60:]
+val_data = data[train_data_len-60:,:]
+
 
 
 #dividir los datos en conjuntos de entrenamiento y prueba
@@ -26,13 +27,6 @@ y_train = []
 x_val = []
 y_val = []
 
-'''for i in range(60,len(train_data_scaled)):
-    x_train.append(train_data_scaled[i-60:i,0])
-    y_train.append(train_data_scaled[i,0])
-
-for i in range(60,len(val_data_scaled)):
-    x_val.append(val_data_scaled[i-60:i,0])
-    y_val.append(val_data_scaled[i,0])'''
 
 for i in range(60,len(train_data)):
     x_train.append(train_data[i-60:i,0])
