@@ -18,13 +18,7 @@ train_data_len = int(np.ceil(len(scaled_data) * .8))
 train_data = scaled_data[0:train_data_len,:]
 val_data = scaled_data[train_data_len-60:,:]
 
-''''
-Error cuadrático medio: 121.7012923207298
-Error absoluto medio: 97.40514243521342
-Error absoluto porcentual medio: 1.0379286622469546
 
-
-'''
 
 
 #dividir los datos en conjuntos de entrenamiento y prueba
@@ -105,7 +99,7 @@ print('Error cuadrático medio:', rmse)
 mae = np.mean(np.abs(predictions - y_val_unscaled))
 print('Error absoluto medio:', mae)
 
-mape = np.mean(np.abs(predictions - y_val_unscaled) / np.abs(y_val_unscaled)) * 100
+mape = np.mean(np.abs(predictions - y_val_unscaled) / np.abs(y_val_unscaled)) 
 print('Error absoluto porcentual medio:', mape)
 
 # Crear el DataFrame de validación con los valores reales y predicciones
@@ -124,6 +118,7 @@ plt.title('Modelo LSTM con Intervalo de Confianza')
 plt.xlabel('Fecha')
 plt.ylabel('Cierre')
 plt.legend()
+plt.savefig('imgs/prediccion_lstm_con_intervalo_confianza.png')
 plt.show()
 
 

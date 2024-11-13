@@ -15,7 +15,7 @@ scaled_data = scaler.fit_transform(data)
 
 
 # Dividir en entrenamiento y prueba (80% para entrenamiento)
-train_data_len = int(np.ceil(len(scaled_data) * .8))
+train_data_len = int(np.ceil(len(data) * .8))
 train_data = data[0:train_data_len,:]
 val_data = data[train_data_len-60:,:]
 
@@ -58,7 +58,7 @@ model.compile(optimizer='adam', loss='mean_squared_error')
 
 
 # Entrenar el modelo
-history = model.fit(x_train, y_train, epochs=20, batch_size=32, validation_data=(x_val, y_val))
+history = model.fit(x_train, y_train, epochs=23, batch_size=32, validation_data=(x_val, y_val))
 
 # Graficar la pérdida
 plt.plot(history.history['loss'], label='train')
